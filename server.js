@@ -13,12 +13,12 @@ app.listen(PORT, () => {
 });
 
 
-// Database connection
-mongoose
-  .connect(DB)
-  .then(() => {
-    console.log("Mongo connected for CMS");
-  })
-  .catch((error) => {
-    console.log("Error: ", error);
-  });
+// // Database connection
+// mongoose
+//   .connect(DB)
+//   .then(() => {
+//     console.log("Mongo connected for CMS");
+//   })
+//   .catch((error) => {
+//     console.log("Error: ", error);
+//   });
