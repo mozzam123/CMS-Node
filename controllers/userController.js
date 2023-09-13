@@ -29,14 +29,12 @@ exports.register = async (req, res) => {
     email: email,
     password: password,
   });
-  console.log("New user: ", newUser);
 
   try {
     const savedUser = await newUser.save();
     console.log("SavedUser : ", savedUser);
     res.status(201).json({ message: "success", data: savedUser });
   } catch (error) {
-    console.log("*************", error);
     res.status(401).json({ error });
   }
 };
