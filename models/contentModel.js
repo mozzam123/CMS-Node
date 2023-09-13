@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const uuid = require("uuid")
 
 const contentItemSchema = new mongoose.Schema({
   title: {
@@ -12,21 +11,20 @@ const contentItemSchema = new mongoose.Schema({
     maxlength: 300,
     required: true,
   },
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'UserModel', // Assuming your User model is named 'User'
-    required: true,
-  },
-  summary: {
-    type: String,
-    maxlength: 100,
-    default: "",
-  },
-  category: {
-    type: String,
-    maxlength: 20,
-    default: "",
-  },
+  // author: {
+  //   type: String,
+  //   default: "", // If you want to use the default _id as author reference
+  // },
+  // summary: {
+  //   type: String,
+  //   maxlength: 100,
+  //   default: "",
+  // },
+  // category: {
+  //   type: String,
+  //   maxlength: 20,
+  //   default: "",
+  // },
 });
 
 const ContentModel = mongoose.model("ContentItem", contentItemSchema);

@@ -1,5 +1,4 @@
 const contentModel = require("./../models/contentModel");
-const uuid = require("uuid")
 const userModel = require("./../models/userModel");
 
 exports.getContent = async (req, res) => {
@@ -23,6 +22,9 @@ exports.getContent = async (req, res) => {
     res.json({ message: error });
   }
 };
+
+
+
 
 exports.createContent = async (req, res) => {
   const username = req.body.username;
