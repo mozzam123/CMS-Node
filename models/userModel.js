@@ -14,12 +14,11 @@ const userSchema = new mongoose.Schema({
   full_name: {
     type: String,
     maxlength: 100,
-    required: true,
   },
   phone: {
     type: String,
     maxlength: 10,
-    required: true,
+    default: 7021825977,
   },
   address: {
     type: String,
@@ -44,7 +43,7 @@ const userSchema = new mongoose.Schema({
   pincode: {
     type: String,
     maxlength: 6,
-    required: true,
+    default: 400102,
   },
   role: {
     type: String,
@@ -54,9 +53,9 @@ const userSchema = new mongoose.Schema({
 });
 
 // Define a virtual field for the username based on the email
-// userSchema.virtual('username').get(function () {
-//   return this.email;
-// });
+userSchema.virtual('username').get(function () {
+  return this.email;
+});
 
 const UserModel = mongoose.model("User", userSchema);
 
