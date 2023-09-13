@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
+const uuid = require("uuid")
 
 const contentItemSchema = new mongoose.Schema({
-  content_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    autoIncrement: true,
-    unique: true,
-  },
+  // content_id: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   // autoIncrement: true,
+  //   unique: true,
+  //   // default: `${uuid.v4()}`,
+  // },
   title: {
     type: String,
     maxlength: 30,

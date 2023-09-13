@@ -1,4 +1,5 @@
 const contentModel = require("./../models/contentModel");
+const uuid = require("uuid")
 const userModel = require("./../models/userModel");
 
 exports.getContent = async (req, res) => {
@@ -32,7 +33,6 @@ exports.createContent = async (req, res) => {
 
   if (existingUser) {
     if (existingUser.role === "author") {
-
       const newcontent = new contentModel({
         body: body,
         title: title,
@@ -41,9 +41,9 @@ exports.createContent = async (req, res) => {
       const savedContent = await newcontent.save();
       console.log(" *****Saved Content: ", savedContent);
       res.json({ message: "success", savedContent });
+    } else if (existingUser.role === "admin") {
+      res.json({ message: "Admins are not allowed to create content" });
     }
-  } else if (existingUser.role === "admin") {
-    res.json({ message: "Admins are not allowed to create content" });
   } else {
     res.json({ message: "Invalid credentials" });
   }
