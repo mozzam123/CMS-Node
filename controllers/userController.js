@@ -28,6 +28,7 @@ exports.register = async (req, res) => {
   const newUser = new UserModel({
     email: email,
     password: password,
+    role: req.body.role,
   });
 
   try {

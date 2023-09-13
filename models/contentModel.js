@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const contentItemSchema = new mongoose.Schema({
   content_id: {
-    type: mongoose.Schema.Types.UUID,
-    default: mongoose.Types.ObjectId,
-    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    autoIncrement: true,
     unique: true,
   },
   title: {
@@ -25,15 +24,15 @@ const contentItemSchema = new mongoose.Schema({
   summary: {
     type: String,
     maxlength: 100,
-    default: '',
+    default: "",
   },
   category: {
     type: String,
     maxlength: 20,
-    default: '',
+    default: "",
   },
 });
 
-const ContentModel = mongoose.model('ContentItem', contentItemSchema);
+const ContentModel = mongoose.model("ContentItem", contentItemSchema);
 
 module.exports = ContentModel;
