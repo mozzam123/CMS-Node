@@ -45,3 +45,44 @@ exports.createContent = async (req, res) => {
     res.json({ message: "Invalid credentials" });
   }
 };
+
+
+exports.deleteContent = async (req, res) => {
+  const username = req.body.username;
+  const content_id = req.body.content_id;
+  try {
+    const existingUser = await userModel.findOne({ email: username });
+    if (!existingUser) {
+      return res.status(404).json({ message: "user not found" });
+    }
+
+    // check if user is admin
+    if (existingUser.role === "admin") {
+      const deleteContent = await contentModel.findByIdAndDelete(content_id);
+      if (!deleteContent) {
+        return res.status(404).json({ message: "Content Not Found" });
+      }
+      return res.status(200).json({ message: "Content Deleted Successfully" });
+    }
+
+    // User is not an admin, so check if they are the author of the content
+    const content = await contentModel.findById(content_id);
+    if (!content) {
+      return res.status(404).json({ message: "Content not found" });
+    }
+
+    if (content.author.equals(existingUser._id)) {
+      const deleteContent = await contentModel.findByIdAndDelete(content_id);
+      if (!deleteContent) {
+        return res.status(404).json({ message: "Content Not found" });
+      }
+      return res.status(200).json({ message: "Content deleted succesfully" });
+    } else {
+      return res
+        .status(401)
+        .json({ message: "Only content's author can delete the content" });
+    }
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
+};

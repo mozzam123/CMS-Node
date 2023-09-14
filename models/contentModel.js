@@ -13,19 +13,9 @@ const contentItemSchema = new mongoose.Schema({
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'UserModel', // Assuming your User model is named 'User'
+    ref: "UserModel", // Assuming your User model is named 'User'
     required: true,
   },
-  // summary: {
-  //   type: String,
-  //   maxlength: 100,
-  //   default: "",
-  // },
-  // category: {
-  //   type: String,
-  //   maxlength: 20,
-  //   default: "",
-  // },
 });
 
 const ContentModel = mongoose.model("ContentItem", contentItemSchema);
