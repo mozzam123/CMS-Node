@@ -3,23 +3,22 @@ const userModel = require("./../models/userModel");
 
 exports.getContent = async (req, res) => {
   const username = req.body.username;
-
-  const existingUser = await userModel.findOne({ email: username });
-
+  console.log("username:", username);
   try {
-    if (existingUser) {
-      // console.log(existingUser);
-      if (existingUser.role === "author") {
-        console.log("*******role is author");
-        const authorContent = await contentModel.findOne({ email: username });
-        return res.json({ message: authorContent });
-      } else if (existingUser.role === "admin") {
-        console.log("*******role is admin");
-      }
+    const existingUser = await userModel.findOne({ email: username });
+    if (!existingUser) {
+      return res.status(404).json({ message: "user not found" });
     }
-    res.json({ message: "in the getcontent" });
+    if (existingUser.role == "author") {
+      const authorContent = await contentModel.find({author: existingUser._id,});
+      return res.status(200).json({ message: authorContent });
+    }
+    else if (existingUser.role == "admin"){
+        const allContent = await contentModel.find()
+        return res.status(200).json({message: allContent})
+    }
   } catch (error) {
-    res.json({ message: error });
+    res.status(404).json({ message: error });
   }
 };
 
