@@ -11,10 +11,11 @@ const contentItemSchema = new mongoose.Schema({
     maxlength: 300,
     required: true,
   },
-  // author: {
-  //   type: String,
-  //   default: "", // If you want to use the default _id as author reference
-  // },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserModel', // Assuming your User model is named 'User'
+    required: true,
+  },
   // summary: {
   //   type: String,
   //   maxlength: 100,

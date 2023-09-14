@@ -23,9 +23,6 @@ exports.getContent = async (req, res) => {
   }
 };
 
-
-
-
 exports.createContent = async (req, res) => {
   const username = req.body.username;
   const title = req.body.content.title;
@@ -41,7 +38,6 @@ exports.createContent = async (req, res) => {
         author: existingUser._id,
       });
       const savedContent = await newcontent.save();
-      console.log(" *****Saved Content: ", savedContent);
       res.json({ message: "success", savedContent });
     } else if (existingUser.role === "admin") {
       res.json({ message: "Admins are not allowed to create content" });
