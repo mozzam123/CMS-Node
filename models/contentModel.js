@@ -17,6 +17,7 @@ const contentItemSchema = new mongoose.Schema({
     required: true,
   },
 });
+contentItemSchema.index({ title: 'text', body: 'text' });
 
 const ContentModel = mongoose.model("ContentItem", contentItemSchema);
 

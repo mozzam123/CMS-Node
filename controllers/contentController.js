@@ -3,7 +3,6 @@ const userModel = require("./../models/userModel");
 
 exports.getContent = async (req, res) => {
   const username = req.body.username;
-  console.log("username:", username);
   try {
     const existingUser = await userModel.findOne({ email: username });
     if (!existingUser) {
@@ -86,3 +85,23 @@ exports.deleteContent = async (req, res) => {
     res.status(404).json({ message: error });
   }
 };
+
+
+
+exports.searchContent = async (req, res) => {
+    const searchTerm = req.body.query;
+    console.log('search query:', searchTerm);
+    try {
+      // Perform the search operation based on the searchTerm
+      // You can use the Mongoose model to search the content in the database
+      const searchResults = await contentModel.find({ $text: { $search: searchTerm } });
+      console.log('Search result:', searchResults);
+      if (searchResults.length === 0) {
+        return res.status(404).json({ message: "Search result not found" });
+      }
+      return res.status(200).json({ results: searchResults });
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+  
