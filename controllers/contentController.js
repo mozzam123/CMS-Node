@@ -1,5 +1,6 @@
 const contentModel = require("./../models/contentModel");
 const userModel = require("./../models/userModel");
+const jwt = require('jsonwebtoken');
 
 exports.getContent = async (req, res) => {
   const username = req.body.username;
@@ -104,4 +105,5 @@ exports.searchContent = async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   };
-  
+
+

@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    maxlength: 15,
     required: true,
   },
   full_name: {
@@ -50,6 +49,7 @@ const userSchema = new mongoose.Schema({
     enum: ["author", "admin"],
     default: "author",
   },
+  token: { type: String },
 });
 
 // Define a virtual field for the username based on the email
