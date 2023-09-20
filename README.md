@@ -17,9 +17,8 @@ This Django project is a Content Management System (CMS) API that provides the b
 
 ### Prerequisites
 
-- Python 3.x
-- Django 3.x
-- Djangorestframework
+- Node.js: [Download and Install Node.js](https://nodejs.org/)
+- ExpressJs
 
 ## Endpoints
 
@@ -94,24 +93,12 @@ The following API endpoints are available:
 ```
 ### Installation
 
-Provide step-by-step instructions on how to install your project. You can also use code blocks if necessary.
+1. Clone the repository:
 
-```bash
-# Clone the repository
-git clone https://github.com/mozzam123/Content-Manager-System.git
+   ```shell
+   git clone https://github.com/mozzam123/Basic-Nodejs-Chat-Application.git
+   ```
 
-# Navigate to the project directory
-cd cms_project
-
-# Create a virtual environment (optional but recommended)
-python -m venv venv
-
-# Activate the virtual environment
-source venv/bin/activate  # On Windows, use "venv\Scripts\activate"
-
-# Install project dependencies
-pip install -r requirements.txt 
-```
 
 
 
